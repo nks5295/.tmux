@@ -11,7 +11,7 @@
 #   - and iTerm2 is configured to let option key act as +Esc
 #   - and iTerm2 is configured to send [1;9A -> [1;9D for option + arrow keys
 # then uncomment the following line to make Meta + arrow keys mapping work
-#set -ga terminal-overrides "*:kUP3=\e[1;9A,*:kDN3=\e[1;9B,*:kRIT3=\e[1;9C,*:kLFT3=\e[1;9D"
+set -ga terminal-overrides "*:kUP3=\e[1;9A,*:kDN3=\e[1;9B,*:kRIT3=\e[1;9C,*:kLFT3=\e[1;9D"
 
 
 # -- windows & pane creation ---------------------------------------------------
@@ -98,7 +98,8 @@ tmux_conf_theme_status_attr='none'
 #     - #{hostname_ssh}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_terminal_title='#h ❐ #S ● #I #W'
+#tmux_conf_theme_terminal_title='#h Ø #S ● #I #W'
+tmux_conf_theme_terminal_title='Ø #h'
 
 # window status style
 #   - built-in variables are:
@@ -146,14 +147,14 @@ tmux_conf_theme_window_status_last_bg='default'
 tmux_conf_theme_window_status_last_attr='none'
 
 # status left/right sections separators
-tmux_conf_theme_left_separator_main=''
-tmux_conf_theme_left_separator_sub='|'
-tmux_conf_theme_right_separator_main=''
-tmux_conf_theme_right_separator_sub='|'
-#tmux_conf_theme_left_separator_main='\uE0B0'  # /!\ you don't need to install Powerline
-#tmux_conf_theme_left_separator_sub='\uE0B1'   #   you only need fonts patched with
-#tmux_conf_theme_right_separator_main='\uE0B2' #   Powerline symbols or the standalone
-#tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see README.md
+#tmux_conf_theme_left_separator_main=''
+#tmux_conf_theme_left_separator_sub='|'
+#tmux_conf_theme_right_separator_main=''
+#tmux_conf_theme_right_separator_sub='|'
+tmux_conf_theme_left_separator_main=''  # /!\ you don't need to install powerline
+tmux_conf_theme_left_separator_sub=''   #   you only need fonts patched with
+tmux_conf_theme_right_separator_main='' #   powerline symbols or the standalone
+tmux_conf_theme_right_separator_sub=''  #   PowerlineSymbols.otf font
 
 # status left/right content:
 #   - separate main sections with '|'
@@ -179,17 +180,20 @@ tmux_conf_theme_right_separator_sub='|'
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=' ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} '
+#tmux_conf_theme_status_left=' Ø '
+tmux_conf_theme_status_left=' Ø #S | ↥ #{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
+#tmux_conf_theme_status_right=' #{prefix} #{pairing} '
+#tmux_conf_theme_status_right=' CPU: #{loadavg} ,#(${HOME}/.tmux/tmux-wifi-os-x/wifi-signal-strength), #{?battery_vbar, #{battery_vbar},}#{?battery_percentage, #{battery_percentage},} , %l:%M %p %d %b | #{username}#{root} | #{hostname} '
+tmux_conf_theme_status_right=' CPU: #{loadavg} | %l:%M %p %d %b '
 
 # status left style
-tmux_conf_theme_status_left_fg='#000000,#e4e4e4,#e4e4e4'  # black, white , white
-tmux_conf_theme_status_left_bg='#ffff00,#ff00af,#00afff'  # yellow, pink, white blue
+tmux_conf_theme_status_left_fg='#1d1f21,#c5c8c6,#c5c8c6'  # black, white, white
+tmux_conf_theme_status_left_bg='#c5c8c6,#0045A7,#373b41' # dark gray, red, white
 tmux_conf_theme_status_left_attr='bold,none,none'
 
 # status right style
-tmux_conf_theme_status_right_fg='#8a8a8a,#e4e4e4,#000000' # light gray, white, black
-tmux_conf_theme_status_right_bg='#080808,#d70000,#e4e4e4' # dark gray, red, white
+tmux_conf_theme_status_right_fg='#c7c9cb,#c5c8c6,#1d1f21' # gray, white, black
+tmux_conf_theme_status_right_bg='#373b41,#0045A7,#c5c8c6' # dark gray, red, white
 tmux_conf_theme_status_right_attr='none,none,bold'
 
 # pairing indicator
@@ -225,7 +229,7 @@ tmux_conf_battery_bar_symbol_empty='◻'
 # battery bar length (in number of symbols), possible values are:
 #   - auto
 #   - a number, e.g. 5
-tmux_conf_battery_bar_length='auto'
+tmux_conf_battery_bar_length='5'
 
 # battery bar palette, possible values are:
 #   - gradient (default)
@@ -249,16 +253,16 @@ tmux_conf_battery_vbar_palette='gradient'
 #tmux_conf_battery_vbar_palette='#d70000,#ff5f00,#5fff00'  # red, orange, green
 
 # symbols used to indicate whether battery is charging or discharging
-tmux_conf_battery_status_charging='↑'       # U+2191
-tmux_conf_battery_status_discharging='↓'    # U+2193
-#tmux_conf_battery_status_charging='⚡ '    # U+26A1
+#tmux_conf_battery_status_charging='↑'       # U+2191
+#tmux_conf_battery_status_discharging='↓'    # U+2193
+tmux_conf_battery_status_charging='⚡ '    # U+26A1
 #tmux_conf_battery_status_charging='🔌 '    # U+1F50C
-#tmux_conf_battery_status_discharging='🔋 ' # U+1F50B
+tmux_conf_battery_status_discharging='🔋 ' # U+1F50B
 
 # clock style (when you hit <prefix> + t)
 # you may want to use %I:%M %p in place of %R in tmux_conf_theme_status_right
 tmux_conf_theme_clock_colour='#00afff'  # light blue
-tmux_conf_theme_clock_style='24'
+tmux_conf_theme_clock_style='12'
 
 
 # -- clipboard -----------------------------------------------------------------
@@ -268,22 +272,24 @@ tmux_conf_theme_clock_style='24'
 #   - false (default)
 # on macOS, this requires installing reattach-to-user-namespace, see README.md
 # on Linux, this requires xsel or xclip
-tmux_conf_copy_to_os_clipboard=false
+tmux_conf_copy_to_os_clipboard=true
 
 
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
 
 # increase history size
-#set -g history-limit 10000
+set -g history-limit 10000000
 
 # start with mouse mode enabled
-#set -g mouse on
+set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
-#set -g status-keys vi
-#set -g mode-keys vi
+set -g status-keys vi
+set -g mode-keys vi
+setw -g mode-keys vi
+set-window-option -g mode-keys vi
 
 # replace C-b by C-a instead of using both prefixes
 # set -gu prefix2
@@ -291,6 +297,63 @@ tmux_conf_copy_to_os_clipboard=false
 # unbind C-b
 # set -g prefix C-a
 # bind C-a send-prefix
+unbind C-b
+set -g prefix `
+bind ` send-prefix
 
 # move status line to top
-#set -g status-position top
+set -g status-position top
+
+# prevent window renaming
+set -g allow-rename off
+
+# Decrease time to process escape key
+set -sg escape-time 0
+
+# Decrease key repeat time frame
+set -sg repeat-time 100
+
+#cmd="$(tmux display -p '#{pane_current_command}')"
+#cmd="$(basename "${cmd,,*}")"
+#
+#tmux resize-pane -Z
+#
+#if [ "${cmd%m}" = "vi" ] ; then
+#  sleep 0.1
+#  tmux send-keys C-w =
+#fi
+
+# -- Tmux Plugin Manager -------------------------------------------------------
+
+# Installing plugins
+#     * Add new plugin to ~/.tmux.conf with set -g @plugin '...'
+#     * Press prefix + I (capital i, as in Install) to fetch the plugin.
+#     * You're good to go! The plugin was cloned to ~/.tmux/plugins/ dir and sourced.
+#
+# Uninstalling plugins
+#     * Remove (or comment out) plugin from the list.
+#     * Press prefix + alt + u (lowercase u as in uninstall) to remove the plugin.
+#     * All the plugins are installed to ~/.tmux/plugins/ so alternatively you can find plugin directory there and remove it.
+#
+# Key bindings
+#     * prefix + I
+#         * Installs new plugins from GitHub or any other git repository
+#         * Refreshes TMUX environment
+#     * prefix + U
+#         * updates plugin(s)
+#     * prefix + alt + u
+#         * remove/uninstall plugins not on the plugin list
+
+# List of plugins
+set -g @tpm_plugins ' \
+    tmux-plugins/tpm \
+    tmux-plugins/tmux-copycat \
+'
+
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'git@github.com/user/plugin'
+# set -g @plugin 'git@bitbucket.com/user/plugin'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run -b '~/.tmux/plugins/tpm/tpm'
