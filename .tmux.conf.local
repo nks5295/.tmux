@@ -279,7 +279,11 @@ tmux_conf_copy_to_os_clipboard=true
 # this is the place to override or undo settings
 
 # increase history size
-set -g history-limit 10000000
+set -g history-limit 100000
+
+# do not clear history along with scrollback
+unbind C-l
+bind -n C-l send-keys C-l
 
 # start with mouse mode enabled
 set -g mouse on
